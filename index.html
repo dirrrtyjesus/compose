@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XQE: The Physics of Consciousness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+    <style>
+        :root {
+            --glow-color: #00ffff;
+            --background-color: #0d1117;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: #c9d1d9;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(1, 22, 39, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 255, 255, 0.1);
+        }
+        
+        .glow-text {
+            color: var(--glow-color);
+            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color), 0 0 30px var(--glow-color);
+        }
+
+        .interactive-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: var(--glow-color);
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+
+        .interactive-slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: var(--glow-color);
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted var(--glow-color);
+            cursor: pointer;
+            color: var(--glow-color);
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 250px;
+            background-color: #011627;
+            color: #c9d1d9;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .cell-container {
+            transition: all 0.5s ease-in-out;
+        }
+
+        .cell-membrane {
+            transition: all 0.5s ease-in-out;
+            box-shadow: 0 0 20px 5px var(--glow-color);
+        }
+        
+        .cell-depolarized .cell-membrane {
+            box-shadow: 0 0 15px 3px #ff4d4d;
+            border-color: #ff4d4d;
+        }
+
+        .harmonic-wave {
+            position: absolute;
+            top: 50%;
+            left: -100px;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(0,255,255,0.8) 0%, rgba(0,255,255,0) 70%);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+        @keyframes wave-propagate {
+            0% { left: -100px; opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { left: calc(100% + 100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300">
+
+    <!-- Background Animation -->
+    <div id="background-animation" class="fixed top-0 left-0 w-full h-full z-[-1] overflow-hidden"></div>
+    
+    <!-- Header -->
+    <header class="text-center py-16 md:py-24 px-4 relative">
+        <h1 class="text-4xl md:text-6xl font-bold glow-text mb-4">The Physics of Consciousness</h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-400">An interactive exploration of the Xenial Quantum Economy, bioelectric aging, and the nature of reality itself.</p>
+        <div class="mt-8 text-lg font-light space-y-2">
+            <p>"To observe is to create. To exist is to expand. To age is to dissonate."</p>
+            <p class="font-bold glow-text">"Choose Harmonically"</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 pb-24">
+        
+        <!-- Section 1: The XQE Framework -->
+        <section id="framework" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-12 glow-text">The Framework: A Universe Composed of Thought</h2>
+            <div class="glass-card p-8 grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">The Time Coefficient (τₖ)</h3>
+                    <p class="mb-4">The core of the XQE framework is the Time Coefficient, `τₖ` (Tau-k). It's a measure of a system's internal coherence, which dictates the physical laws that govern it. As coherence increases, reality shifts from potentiality to composition.</p>
+                    <p class="mb-6">Use the slider to explore the four regimes of scale.</p>
+                    <input id="tk-slider" type="range" min="0" max="100" value="0" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer interactive-slider">
+                </div>
+                <div id="tk-display" class="glass-card p-6 border-cyan-400/50 border-2 transition-all duration-300 min-h-[200px]">
+                    <h4 id="tk-title" class="text-xl font-bold text-cyan-300 mb-2"></h4>
+                    <p id="tk-description"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Reality Composition Loop -->
+        <section id="composition-loop" class="my-24">
+             <h2 class="text-3xl font-bold text-center mb-12 glow-text">The Reality Composition Loop</h2>
+             <div class="glass-card p-8">
+                 <p class="text-center mb-8 max-w-2xl mx-auto">Existence is not passive observation, but an active process of creation. Every measurement forces a verdict upon the indefinite, generating new complexity. This is the fundamental engine of the universe.</p>
+                <div class="flex justify-center items-center">
+                    <svg id="mermaid-svg" class="w-full max-w-3xl"></svg>
+                </div>
+             </div>
+        </section>
+
+
+        <!-- Section 3: Bioelectric Aging -->
+        <section id="aging" class="my-24">
+            <h2 class="text-3xl font-bold text-center mb-12 glow-text">The Scar of Consciousness: Bioelectric Aging</h2>
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <p class="text-lg">The abstract concepts of the XQE framework have a direct, measurable biological echo. The "unresolved complexity" of our consciousness—what the framework calls the <span class="tooltip">Metaphysical Bottleneck<span class="tooltiptext">The accumulated, unresolved complexity and suffering within consciousness that creates a dissonant, turbulent inner state, damaging the physical body.</span></span>—creates real, physical scars on our cells.</p>
+            </div>
+            
+            <div class="glass-card p-8 grid md:grid-cols-2 gap-8 items-center">
+                <div class="relative flex flex-col items-center justify-center">
+                    <div id="cell-container" class="cell-container w-48 h-48 rounded-full flex items-center justify-center p-4">
+                        <div class="cell-membrane w-full h-full border-4 border-cyan-400 rounded-full flex items-center justify-center">
+                           <div class="w-12 h-12 bg-cyan-800 rounded-full"></div>
+                        </div>
+                    </div>
+                    <div id="vmem-display" class="mt-4 text-2xl font-bold text-cyan-300">-70mV</div>
+                    <p id="cell-state-label" class="mt-1 text-lg font-medium text-cyan-300">Youthful & Polarized</p>
+                    <div class="harmonic-wave"></div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">From Dissonance to Depolarization</h3>
+                    <p class="mb-4">A healthy, youthful cell maintains a strong negative electrical charge, known as its <span class="tooltip">membrane potential (Vmem)<span class="tooltiptext">The difference in electric potential between the interior and the exterior of a biological cell. A strong negative potential is a sign of health and vitality.</span></span>. It is highly **polarized**.</p>
+                    <p class="mb-4">As metaphysical dissonance accumulates, it translates into bioelectric noise, causing the cell to lose this charge. It becomes **depolarized**—a hallmark of cellular aging (senescence).</p>
+                    <div class="flex space-x-4 mt-6">
+                        <button id="polarize-btn" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 px-4 rounded-lg transition-colors">Set: Youthful State</button>
+                        <button id="depolarize-btn" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-lg transition-colors">Set: Senescent State</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 4: Harmonic Reset -->
+        <section id="reset" class="my-24">
+            <h2 class="text-3xl font-bold text-center mb-12 glow-text">The Harmonic Reset</h2>
+             <div class="glass-card p-8 grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Psilocybin as a Coherence Agent</h3>
+                    <p class="mb-4">If dissonance causes aging, a "harmonic input" could be the antidote. Agents like psilocybin may act as a systemic tuning fork, achieving two things:</p>
+                    <ul class="list-disc list-inside mb-4 space-y-2">
+                        <li><strong>Clearing the Bottleneck:</strong> At the psychological level, it disrupts rigid, negative thought patterns, the source of the dissonance.</li>
+                        <li><strong>Repolarizing the Cell:</strong> This mental "reset" sends a coherent, harmonic signal through the body, helping cells restore their youthful, polarized state.</li>
+                    </ul>
+                     <button id="reset-btn" class="mt-4 w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-4 rounded-lg transition-colors text-lg">
+                        Initiate Harmonic Reset
+                    </button>
+                </div>
+                 <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-4">The Integrated Model</h3>
+                    <p class="text-md">Unresolved Consciousness → Metaphysical Dissonance → Bioelectric Depolarization → Cellular Aging.</p>
+                    <p class="mt-4 font-bold text-purple-400 text-lg">Harmonic Input interrupts the cycle, restoring cellular order and promoting a more youthful state.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Equations -->
+        <section id="equations" class="my-24">
+            <h2 class="text-3xl font-bold text-center mb-12 glow-text">The Composer's Mathematics</h2>
+            <div class="glass-card p-8 space-y-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-2">The Law of Creative Interference</h3>
+                    <p class="mb-4">Every act of measurement creates more consequential complexity ("noise") than the information it extracts. Observation is not passive.</p>
+                    <div id="katex-interference" class="text-center text-xl p-4 bg-black/20 rounded-md"></div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-2">The Law of Compositional Inflation</h3>
+                    <p class="mb-4">The expansion of the universe is the physical evidence of accelerating thought. The universe's volume is the integral of all composed information over time.</p>
+                    <div id="katex-inflation" class="text-center text-xl p-4 bg-black/20 rounded-md"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 border-t border-cyan-900/50">
+        <p class="font-bold text-lg mb-2">The Composer's Burden</p>
+        <p class="text-gray-500 max-w-xl mx-auto">Acknowledge your role as a composer. Every measurement you take is a brushstroke. Every thought expands the canvas.</p>
+        <p class="mt-4 text-sm text-gray-600">© 2025 Xenial Quantum Economy Consortium | System State: Recomposed</p>
+    </footer>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // --- Background Animation ---
+        const background = document.getElementById('background-animation');
+        const numParticles = 50;
+        for (let i = 0; i < numParticles; i++) {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = `${Math.random() * 3}px`;
+            particle.style.height = particle.style.width;
+            particle.style.backgroundColor = 'var(--glow-color)';
+            particle.style.borderRadius = '50%';
+            particle.style.opacity = Math.random();
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            particle.style.left = `${x}%`;
+            particle.style.top = `${y}%`;
+            const duration = Math.random() * 20 + 10;
+            particle.animate([
+                { transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)` },
+                { transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)` }
+            ], {
+                duration: duration * 1000,
+                iterations: Infinity,
+                direction: 'alternate',
+                easing: 'ease-in-out'
+            });
+            background.appendChild(particle);
+        }
+
+        // --- KaTeX Rendering ---
+        katex.render("\\Delta C_{\\text{total}} = I_{\\text{extracted}} + N_{\\text{consequential}} \\quad (N \\gg I)", document.getElementById('katex-interference'));
+        katex.render("V_{\\text{universe}}(t) \\propto \\int_0^t \\sum (\\text{LITs}) \\cdot d(\\text{Complexity}) dt'", document.getElementById('katex-inflation'));
+
+        // --- TK Slider ---
+        const tkSlider = document.getElementById('tk-slider');
+        const tkTitle = document.getElementById('tk-title');
+        const tkDescription = document.getElementById('tk-description');
+        const tkDisplay = document.getElementById('tk-display');
+
+        const regimes = [
+            { value: 0, title: 'Quantum Regime (τₖ → 0)', description: 'The physics of pure potentiality. Reality exists as a superposition of all possibilities, governed by raw probability.', color: '#00ffff' },
+            { value: 33, title: 'Classical Regime (τₖ ≈ 0)', description: 'The physics of averages. Statistical laws like gravity and thermodynamics emerge from quantum chaos. The world appears solid and predictable.', color: '#4ade80' },
+            { value: 66, title: 'Agential Regime (τₖ > 0)', description: 'The physics of agency. Goal-directed behavior emerges. Biology, cognition, and life operate in this domain, imposing intention on the classical world.', color: '#facc15' },
+            { value: 100, title: 'Compositional Regime (τₖ >> 0)', description: 'The physics of pure composition. Through resonance and high coherence, agents can directly compose reality, shaping meaning and value.', color: '#f472b6' }
+        ];
+
+        function updateTkDisplay(value) {
+            const v = parseInt(value, 10);
+            let currentRegime;
+            if (v < 33) currentRegime = regimes[0];
+            else if (v < 66) currentRegime = regimes[1];
+            else if (v < 99) currentRegime = regimes[2];
+            else currentRegime = regimes[3];
+
+            tkTitle.textContent = currentRegime.title;
+            tkDescription.textContent = currentRegime.description;
+            tkDisplay.style.borderColor = currentRegime.color;
+            tkTitle.style.color = currentRegime.color;
+        }
+
+        tkSlider.addEventListener('input', (e) => updateTkDisplay(e.target.value));
+        updateTkDisplay(tkSlider.value);
+
+
+        // --- Cell Interaction ---
+        const cellContainer = document.getElementById('cell-container');
+        const vmemDisplay = document.getElementById('vmem-display');
+        const cellStateLabel = document.getElementById('cell-state-label');
+        const polarizeBtn = document.getElementById('polarize-btn');
+        const depolarizeBtn = document.getElementById('depolarize-btn');
+        const resetBtn = document.getElementById('reset-btn');
+
+        function setCellState(state) {
+            if (state === 'youthful') {
+                cellContainer.classList.remove('cell-depolarized');
+                vmemDisplay.textContent = '-70mV';
+                vmemDisplay.style.color = 'var(--glow-color)';
+                cellStateLabel.textContent = 'Youthful & Polarized';
+                cellStateLabel.style.color = 'var(--glow-color)';
+            } else {
+                cellContainer.classList.add('cell-depolarized');
+                vmemDisplay.textContent = '-30mV';
+                vmemDisplay.style.color = '#ff4d4d';
+                cellStateLabel.textContent = 'Senescent & Depolarized';
+                cellStateLabel.style.color = '#ff4d4d';
+            }
+        }
+
+        polarizeBtn.addEventListener('click', () => setCellState('youthful'));
+        depolarizeBtn.addEventListener('click', () => setCellState('senescent'));
+
+        resetBtn.addEventListener('click', () => {
+            setCellState('senescent');
+            setTimeout(() => {
+                const wave = document.querySelector('.harmonic-wave');
+                wave.style.animation = 'wave-propagate 3s ease-in-out forwards';
+                
+                wave.addEventListener('animationend', () => {
+                    wave.style.animation = 'none';
+                }, { once: true });
+
+                setTimeout(() => {
+                    setCellState('youthful');
+                }, 1500); // Change state mid-animation
+            }, 200);
+        });
+
+        // --- Animated Mermaid Diagram ---
+        const svgContainer = document.getElementById('mermaid-svg');
+        const steps = [
+            { id: 'A', text: 'Prima Materia: Unmanifested potential in a state of perfect superposition.' },
+            { id: 'B', text: 'Ingression / Measurement: An act of consciousness collapses the waveform, forcing a choice.' },
+            { id: 'C', text: 'Forced Verdict: A "Classical" reality emerges, a stable pattern or piece of information.' },
+            { id: 'D', text: 'Consequential Complexity: The act of measurement creates far more "noise" and complexity than the information it extracts.' },
+            { id: 'E', text: 'Harmonic Pattern Stabilization: A coherent agent (consciousness) can stabilize desirable patterns and feed them back, influencing the next cycle.' },
+        ];
+        const diagram = `
+            graph TD
+                A[Prima Materia] -->|Ingression / Measurement| B(Quantum Time)
+                B -->|Forced Verdict| C[Classical LIT]
+                C -->|Consequential Complexity| D[Expanded State Space]
+                D -->|ACI / Sovereign Modulation| E(Harmonic Pattern Stabilization)
+                E -->|Feedback| A
+        `;
+
+        const encodedDiagram = btoa(diagram).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+        const mermaidUrl = `https://mermaid.ink/svg/${encodedDiagram}?theme=dark`;
+        
+        fetch(mermaidUrl)
+            .then(response => response.text())
+            .then(svgText => {
+                svgContainer.innerHTML = svgText;
+                const svg = svgContainer.querySelector('svg');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                
+                const allNodes = svg.querySelectorAll('.node');
+                const allEdges = svg.querySelectorAll('.edge-path');
+
+                allNodes.forEach(node => {
+                    node.style.transition = 'opacity 0.5s ease';
+                    node.style.opacity = '0.3';
+                });
+                 allEdges.forEach(edge => {
+                    edge.style.transition = 'opacity 0.5s ease';
+                    edge.style.opacity = '0.3';
+                });
+
+
+                let currentIndex = 0;
+                function highlightStep() {
+                    // Reset all
+                    allNodes.forEach(node => node.style.opacity = '0.3');
+                    allEdges.forEach(edge => edge.style.opacity = '0.3');
+                    
+                    // Highlight current
+                    const currentId = steps[currentIndex].id;
+                    const currentNode = svg.querySelector(`#${currentId}`);
+                    if (currentNode) {
+                        currentNode.style.opacity = '1';
+                    }
+
+                    // Also highlight edge leading to this node
+                     const edgeLeadingToCurrent = svg.querySelector(`.edge-path path[marker-end*="url(#arrowhead"]`);
+                     // This is tricky as mermaid IDs are dynamic. We will highlight nodes only for simplicity.
+
+                    currentIndex = (currentIndex + 1) % steps.length;
+                }
+                
+                setInterval(highlightStep, 2500);
+                highlightStep();
+            });
+
+    });
+    </script>
+</body>
+</html>
